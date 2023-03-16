@@ -22,7 +22,7 @@ export default function ViewBook() {
                             {
                                 Books && Books.map((book) => {
                                     const {id, title, author} = book;
-                                    return <tr>
+                                    return <tr key={id}>
                                             <th scope="row">{id}</th>
                                             <td>{title}</td>
                                             <td>{author}</td>

@@ -1,13 +1,24 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addBooks } from './BooksSlice';
 
 export default function AddBook() {
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
 
+  const dispatch = useDispatch();
+  const navigator = useNavigate();
+
+  const numberOfBooks = useSelector((state) => state.booksReducer.books.length)
+  console.log(numberOfBooks)
+
   const booksHandleFunction = (e) => {
     e.preventDefault();
-    const book = {title, author};
-    console.log(book);
+    const book = { id: numberOfBooks+ 1, title, author};
+    dispatch(addBooks(book));
+    navigator('/list-books', {replace: true})
+    // console.log(book);
   }
   return (
       <div className='container py-2'> 
@@ -27,7 +38,7 @@ export default function AddBook() {
                             id="exampleFormControlInput1" 
                             placeholder="type book name" 
                             value={title}
-
+                            onChange={(e) => setTitle(e.target.value)}
                           />
                       </div>
                       <div className="mb-3 text-start">
@@ -42,6 +53,7 @@ export default function AddBook() {
                               id="exampleFormControlInput1"
                               placeholder="type author name"
                               value={author}
+                              onChange={(e) => setAuthor(e.target.value)}
                           />
                       </div>
                       <button type="submit" className="btn btn-primary">Submit</button>
