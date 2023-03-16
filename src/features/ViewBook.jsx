@@ -1,11 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useLocation } from 'react-router-dom';
 import { deleteBooks } from './BooksSlice';
 
 export default function ViewBook() {
     const Books = useSelector((state) => state.booksReducer.books)
-    console.log(Books)
     const dispatch = useDispatch();
+    
+    
 
 
     // delete
@@ -35,7 +37,17 @@ export default function ViewBook() {
                                             <td>{title}</td>
                                             <td>{author}</td>
                                             <td className='d-flex flex-wrap gap-2 justify-content-center'>
-                                                <button type="button" className="btn btn-info">Edit</button>
+                                                <Link 
+                                                    to='/edit-books'
+                                                    state={{id,title,author}}
+                                                >
+                                                    <button 
+                                                        type="button" 
+                                                        className="btn btn-info"
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                </Link>
                                                 <button 
                                                     type="button" 
                                                     className="btn btn-danger"
