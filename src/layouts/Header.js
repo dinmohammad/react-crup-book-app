@@ -17,6 +17,13 @@ export default function Header() {
                     <li className="nav-item">
                         <Link className="nav-link" aria-current="page" to={'/list-books'}>List Book</Link>
                     </li>
+
+                    <li className="nav-item">
+                        <Link className="nav-link" aria-current="page" to={'/add-store'}>Add Store</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" aria-current="page" to={'/view-store'}>List Store</Link>
+                    </li>
                 </ul>
             </div>
         </div>
