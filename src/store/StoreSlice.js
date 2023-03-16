@@ -24,9 +24,19 @@ export const StoreSlice = createSlice({
             const id = action.payload;
             state.StoresData = state.StoresData.filter(store => store.id !== id)
         },
+        updateStores: (state , action) => {
+            const {id, name, owner, location, number} = action.payload;
+            const isStoreExist = state.StoresData.filter(store => store.id === id);
+            if(isStoreExist){
+                isStoreExist[0].name = name;
+                isStoreExist[0].owner = owner;
+                isStoreExist[0].location = location;
+                isStoreExist[0].number = number;
+            }
+        },
     }
 })
 
 // reducer export 
-export const {showStores,addStores, deleteStore} = StoreSlice.actions;
+export const {showStores,addStores, deleteStore, updateStores} = StoreSlice.actions;
 export default StoreSlice.reducer;

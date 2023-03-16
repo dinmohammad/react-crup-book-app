@@ -41,7 +41,7 @@ function ViewStore(props) {
                                         <td>{number}</td>
                                         <td className='d-flex flex-wrap gap-2 justify-content-center'>
                                             <Link
-                                                to='/edit-books'
+                                                to='/edit-store'
                                                 state={{ id, name, owner, location, number }}
                                             >
                                                 <button
