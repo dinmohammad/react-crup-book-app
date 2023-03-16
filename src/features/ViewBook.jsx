@@ -1,9 +1,17 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteBooks } from './BooksSlice';
 
 export default function ViewBook() {
     const Books = useSelector((state) => state.booksReducer.books)
     console.log(Books)
+    const dispatch = useDispatch();
+
+
+    // delete
+    const booksDeletFunction = (id) => {
+        dispatch(deleteBooks(id))
+    }
   return (
       <div className='container py-2'> 
           <div className="row">
@@ -27,8 +35,14 @@ export default function ViewBook() {
                                             <td>{title}</td>
                                             <td>{author}</td>
                                             <td className='d-flex flex-wrap gap-2 justify-content-center'>
-                                            <button type="button" className="btn btn-info">Edit</button>
-                                            <button type="button" className="btn btn-danger">Delete</button>
+                                                <button type="button" className="btn btn-info">Edit</button>
+                                                <button 
+                                                    type="button" 
+                                                    className="btn btn-danger"
+                                                    onClick={() => {booksDeletFunction(id)}}
+                                                >
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                 })
